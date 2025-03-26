@@ -14,3 +14,17 @@ int binary_search(int sorted_a[], int n, int x);
 void bubble_sort(int a[], int n);
 void selection_sort(int a [], int n);
 void insertion_sort(int a[], int n);
+
+class Wrapper {
+int* a;
+int n;
+
+void modify();
+void sort();
+void search();
+void init();
+
+public:
+  Wrapper(int* in_a, int in_n);
+  Wrapper();
+};
