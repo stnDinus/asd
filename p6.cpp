@@ -63,14 +63,14 @@ struct LinkedList {
     if (HEAD == NULL) {
       return;
     }
-    Node* pre_temp;
+    Node* pre_tail;
     for (Node* i = HEAD; i != NULL ; i = i->next) {
       if (i->next == NULL) {
         break;
       }
-      pre_temp = i;
+      pre_tail = i;
     }
-    pre_temp->next = NULL;
+    pre_tail->next = NULL;
   }
 };
 
