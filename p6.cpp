@@ -72,6 +72,12 @@ struct LinkedList {
     }
     pre_tail->next = NULL;
   }
+
+  int len() {
+    int i = 0;
+    for (Node* n = HEAD; n != NULL; n = n->next, i++) {};
+    return i;
+  }
 };
 
 int main() {
