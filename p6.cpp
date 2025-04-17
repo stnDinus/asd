@@ -13,7 +13,8 @@ struct Node {
 struct LinkedList {
   Node* HEAD = NULL;
 
-  void insert_head(Node* temp, int x) {
+  void insert_head(int x) {
+    Node* temp = new Node();
     temp->data = x;
 
     if (HEAD != NULL) {
@@ -23,7 +24,8 @@ struct LinkedList {
     HEAD = temp;
   }
 
-  void insert_tail(Node* temp, int x) {
+  void insert_tail(int x) {
+    Node* temp = new Node();
     temp->data = x;
 
     Node* tail;
@@ -51,13 +53,13 @@ struct LinkedList {
     cout << endl;
   }
 
-  void pop_front(Node* temp, int x) {
+  void pop_front() {
     if (HEAD != NULL) {
       HEAD = HEAD->next;
     };
   }
 
-  void pop_back(Node* temp, int x) {
+  void pop_back() {
     if (HEAD == NULL) {
       return;
     }
@@ -74,18 +76,18 @@ struct LinkedList {
 
 int main() {
   LinkedList l;
-  l.insert_head(new Node(), 1);
-  l.insert_head(new Node(), 2);
+  l.insert_head(1);
+  l.insert_head(2);
 
-  l.insert_tail(new Node(), 3);
-
-  l.print();
-
-  l.pop_front(new Node(), 0);
+  l.insert_tail(3);
 
   l.print();
 
-  l.pop_back(new Node(), 0);
+  l.pop_front();
+
+  l.print();
+
+  l.pop_back();
 
   l.print();
 
