@@ -13,7 +13,7 @@ struct Node {
 struct LinkedList {
   Node* HEAD = NULL;
 
-  void insert_depan(Node* temp, int x) {
+  void insert_head(Node* temp, int x) {
     temp->data = x;
 
     if (HEAD != NULL) {
@@ -23,7 +23,7 @@ struct LinkedList {
     HEAD = temp;
   }
 
-  void insert_belakang(Node* temp, int x) {
+  void insert_tail(Node* temp, int x) {
     temp->data = x;
 
     Node* tail;
@@ -34,7 +34,7 @@ struct LinkedList {
     tail->next = temp;
   }
 
-  void cetak() {
+  void print() {
     if (HEAD == NULL) {
       cout << "-" << endl;
       return;
@@ -51,13 +51,13 @@ struct LinkedList {
     cout << endl;
   }
 
-  void hapus_depan(Node* temp, int x) {
+  void pop_front(Node* temp, int x) {
     if (HEAD != NULL) {
       HEAD = HEAD->next;
     };
   }
 
-  void hapus_belakang(Node* temp, int x) {
+  void pop_back(Node* temp, int x) {
     if (HEAD == NULL) {
       return;
     }
@@ -74,20 +74,20 @@ struct LinkedList {
 
 int main() {
   LinkedList l;
-  l.insert_depan(new Node(), 1);
-  l.insert_depan(new Node(), 2);
+  l.insert_head(new Node(), 1);
+  l.insert_head(new Node(), 2);
 
-  l.insert_belakang(new Node(), 3);
+  l.insert_tail(new Node(), 3);
 
-  l.cetak();
+  l.print();
 
-  l.hapus_depan(new Node(), 0);
+  l.pop_front(new Node(), 0);
 
-  l.cetak();
+  l.print();
 
-  l.hapus_belakang(new Node(), 0);
+  l.pop_back(new Node(), 0);
 
-  l.cetak();
+  l.print();
 
   return 0;
 }
