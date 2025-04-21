@@ -124,6 +124,29 @@ struct LinkedList {
       pre->next = n->next;
     }
   }
+
+  void pop_at(int at) {
+    int l = len();
+    if (at > l - 1)  {
+      cerr << "invalid position " << at << " on linked list with length " << l << endl;
+      return;
+    }
+
+    if (at == 0) {
+      pop_head();
+      return;
+    }
+
+    int i = 1;
+    Node* pre_at = HEAD;
+    for (Node* n = HEAD->next; n != NULL; n = n->next, i++) {
+      if (i == at) {
+        pre_at->next = n->next;
+        break;
+      }
+      pre_at = n;
+    }
+  }
 };
 
 int main() {
@@ -163,6 +186,18 @@ int main() {
   l.print();
 
   l.pop(8);
+
+  l.print();
+
+  l.pop_at(1);
+
+  l.print();
+
+  l.pop_at(l.len()-1);
+
+  l.print();
+
+  l.pop_at(0);
 
   l.print();
 
