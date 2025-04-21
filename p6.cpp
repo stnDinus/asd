@@ -104,6 +104,26 @@ struct LinkedList {
       pre_at = n;
     }
   }
+
+  void pop(int data) {
+    if (HEAD->data == data) {
+      pop_front();
+    }
+
+    Node* pre;
+    for (Node* n = HEAD->next; n != NULL; pre = n, n = n->next) {
+      if (n->data != data) {
+        continue;
+      }
+
+      if (n->next == NULL) {
+        pre->next = NULL;
+        break;
+      }
+
+      pre->next = n->next;
+    }
+  }
 };
 
 int main() {
