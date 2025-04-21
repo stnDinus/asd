@@ -153,7 +153,16 @@ int main() {
 
   l.print();
 
-  l.insert_at(5, 0);
+  l.insert_at(l.len(), 0);
+
+  l.print();
+
+  l.insert_head(8);
+  l.insert_tail(8);
+
+  l.print();
+
+  l.pop(8);
 
   l.print();
 
