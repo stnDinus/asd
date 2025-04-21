@@ -53,13 +53,13 @@ struct LinkedList {
     cout << endl;
   }
 
-  void pop_front() {
+  void pop_head() {
     if (HEAD != NULL) {
       HEAD = HEAD->next;
     };
   }
 
-  void pop_back() {
+  void pop_tail() {
     if (HEAD == NULL) {
       return;
     }
@@ -107,7 +107,7 @@ struct LinkedList {
 
   void pop(int data) {
     if (HEAD->data == data) {
-      pop_front();
+      pop_head();
     }
 
     Node* pre;
@@ -137,11 +137,11 @@ int main() {
 
   l.print();
 
-  l.pop_front();
+  l.pop_head();
 
   l.print();
 
-  l.pop_back();
+  l.pop_tail();
 
   l.print();
 
