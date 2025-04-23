@@ -93,8 +93,8 @@ struct LinkedList {
     Node* temp = new Node();
     temp->data = x;
 
-    int i = 0;
-    Node* pre_at;
+    int i = 1;
+    Node* pre_at = HEAD;
     for (Node* n = HEAD->next; n != NULL; n = n->next, i++) {
       if (i == at) {
         pre_at->next = temp;
