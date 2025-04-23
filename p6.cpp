@@ -55,7 +55,9 @@ struct LinkedList {
 
   void pop_head() {
     if (HEAD != NULL) {
-      HEAD = HEAD->next;
+      Node* temp = HEAD->next;
+      delete HEAD;
+      HEAD = temp;
     };
   }
 
@@ -66,6 +68,7 @@ struct LinkedList {
     Node* pre_tail;
     for (Node* i = HEAD; i != NULL ; i = i->next) {
       if (i->next == NULL) {
+        delete i;
         break;
       }
       pre_tail = i;
@@ -117,6 +120,7 @@ struct LinkedList {
       }
 
       if (n->next == NULL) {
+        delete n;
         pre->next = NULL;
         break;
       }
@@ -142,6 +146,7 @@ struct LinkedList {
     for (Node* n = HEAD->next; n != NULL; n = n->next, i++) {
       if (i == at) {
         pre_at->next = n->next;
+        delete n;
         break;
       }
       pre_at = n;
