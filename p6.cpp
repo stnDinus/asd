@@ -152,6 +152,10 @@ struct LinkedList {
       pre_at = n;
     }
   }
+
+  void deinit() {
+    delete HEAD;
+  }
 };
 
 int main() {
@@ -205,6 +209,8 @@ int main() {
   l.pop_at(0);
 
   l.print();
+
+  l.deinit();
 
   return 0;
 }
