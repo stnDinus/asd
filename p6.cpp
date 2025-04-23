@@ -93,15 +93,14 @@ struct LinkedList {
       insert_head(x);
     }
 
-    Node* temp = new Node();
-    temp->data = x;
-
     int i = 1;
     Node* pre_at = HEAD;
     for (Node* n = HEAD->next; n != NULL; n = n->next, i++) {
       if (i == at) {
-        pre_at->next = temp;
+        Node* temp = new Node();
+        temp->data = x;
         temp->next = n;
+        pre_at->next = temp;
         break;
       }
       pre_at = n;
