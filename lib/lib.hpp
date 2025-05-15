@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <cstddef> // used for NULL type
 
 using namespace std;
 
@@ -27,4 +28,25 @@ void init();
 public:
   Wrapper(int* in_a, int in_n);
   Wrapper();
+};
+
+class Node {
+public:
+  int data;
+  Node* next;
+};
+
+class LinkedList {
+public:
+  Node* HEAD = NULL;
+  void insert_head(int x);
+  void insert_tail(int x);
+  void print();
+  void pop_head();
+  void pop_tail();
+  int len();
+  void insert_at(int at, int x);
+  void pop(int data);
+  void pop_at(int at);
+  void deinit();
 };
