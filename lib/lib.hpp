@@ -39,14 +39,17 @@ public:
 class LinkedList {
 public:
   Node* head = NULL;
+
   void insert_head(int x);
   void insert_tail(int x);
-  void print();
   void delete_head();
   void delete_tail();
-  int len();
   void insert_at(int at, int x);
-  void delete_data(int data);
   void delete_at(int at);
+  void delete_data(int data);
+
+  // utility functions
+  int len();
+  void print();
   void deinit();
 };
