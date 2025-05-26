@@ -1,26 +1,28 @@
 #include "./lib.hpp"
 
 void LinkedList::insert_head(int x) {
-  Node* temp = new Node();
-  temp->data = x;
+  Node* new_node = new Node();
+  new_node->data = x;
 
   if (head != NULL) {
-    temp->next = head;
+    new_node->next = head;
   }
 
-  head = temp;
+  head = new_node;
 }
 
 void LinkedList::insert_tail(int x) {
-  Node* temp = new Node();
-  temp->data = x;
+  Node* new_node = new Node();
+  new_node->data = x;
+
+  // BUG: handle null head
 
   Node* tail;
   for (Node* i = head; i != NULL; i = i->next) {
     tail = i;
   }
 
-  tail->next = temp;
+  tail->next = new_node;
 }
 
 void LinkedList::print() {
@@ -42,9 +44,9 @@ void LinkedList::print() {
 
 void LinkedList::delete_head() {
   if (head != NULL) {
-    Node* temp = head->next;
+    Node* new_head = head->next;
     delete head;
-    head = temp;
+    head = new_head;
   };
 }
 
@@ -81,16 +83,15 @@ void LinkedList::insert_at(int at, int x) {
   }
 
   int i = 1;
-  Node* pre_at = head;
-  for (Node* n = head->next; n != NULL; n = n->next, i++) {
+  Node* prev_node = head;
+  for (Node* n = head->next; n != NULL; prev_node = n, n = n->next, i++) {
     if (i == at) {
-      Node* temp = new Node();
-      temp->data = x;
-      temp->next = n;
-      pre_at->next = temp;
+      Node* new_node = new Node();
+      new_node->data = x;
+      new_node->next = n;
+      prev_node->next = new_node;
       break;
     }
-    pre_at = n;
   }
 }
 
