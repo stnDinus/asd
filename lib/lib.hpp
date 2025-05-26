@@ -38,7 +38,7 @@ public:
 
 class LinkedList {
 public:
-  Node* HEAD = NULL;
+  Node* head = NULL;
   void insert_head(int x);
   void insert_tail(int x);
   void print();

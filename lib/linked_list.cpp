@@ -4,11 +4,11 @@ void LinkedList::insert_head(int x) {
   Node* temp = new Node();
   temp->data = x;
 
-  if (HEAD != NULL) {
-    temp->next = HEAD;
+  if (head != NULL) {
+    temp->next = head;
   }
 
-  HEAD = temp;
+  head = temp;
 }
 
 void LinkedList::insert_tail(int x) {
@@ -16,7 +16,7 @@ void LinkedList::insert_tail(int x) {
   temp->data = x;
 
   Node* tail;
-  for (Node* i = HEAD; i != NULL; i = i->next) {
+  for (Node* i = head; i != NULL; i = i->next) {
     tail = i;
   }
 
@@ -24,12 +24,12 @@ void LinkedList::insert_tail(int x) {
 }
 
 void LinkedList::print() {
-  if (HEAD == NULL) {
+  if (head == NULL) {
     cout << "-" << endl;
     return;
   }
 
-  for (Node* i = HEAD; i != NULL; i = i->next) {
+  for (Node* i = head; i != NULL; i = i->next) {
     cout << i->data;
 
     if (i->next != NULL) {
@@ -41,19 +41,19 @@ void LinkedList::print() {
 }
 
 void LinkedList::delete_head() {
-  if (HEAD != NULL) {
-    Node* temp = HEAD->next;
-    delete HEAD;
-    HEAD = temp;
+  if (head != NULL) {
+    Node* temp = head->next;
+    delete head;
+    head = temp;
   };
 }
 
 void LinkedList::delete_tail() {
-  if (HEAD == NULL) {
+  if (head == NULL) {
     return;
   }
   Node* pre_tail;
-  for (Node* i = HEAD; i != NULL ; i = i->next) {
+  for (Node* i = head; i != NULL ; i = i->next) {
     if (i->next == NULL) {
       delete i;
       break;
@@ -65,7 +65,7 @@ void LinkedList::delete_tail() {
 
 int LinkedList::len() {
   int i = 0;
-  for (Node* n = HEAD; n != NULL; n = n->next, i++) {};
+  for (Node* n = head; n != NULL; n = n->next, i++) {};
   return i;
 }
 
@@ -81,8 +81,8 @@ void LinkedList::insert_at(int at, int x) {
   }
 
   int i = 1;
-  Node* pre_at = HEAD;
-  for (Node* n = HEAD->next; n != NULL; n = n->next, i++) {
+  Node* pre_at = head;
+  for (Node* n = head->next; n != NULL; n = n->next, i++) {
     if (i == at) {
       Node* temp = new Node();
       temp->data = x;
@@ -95,12 +95,12 @@ void LinkedList::insert_at(int at, int x) {
 }
 
 void LinkedList::delete_data(int data) {
-  if (HEAD->data == data) {
+  if (head->data == data) {
     delete_head();
   }
 
   Node* pre;
-  for (Node* n = HEAD->next; n != NULL; pre = n, n = n->next) {
+  for (Node* n = head->next; n != NULL; pre = n, n = n->next) {
     if (n->data != data) {
       continue;
     }
@@ -128,8 +128,8 @@ void LinkedList::delete_at(int at) {
   }
 
   int i = 1;
-  Node* pre_at = HEAD;
-  for (Node* n = HEAD->next; n != NULL; n = n->next, i++) {
+  Node* pre_at = head;
+  for (Node* n = head->next; n != NULL; n = n->next, i++) {
     if (i == at) {
       pre_at->next = n->next;
       delete n;
@@ -140,5 +140,5 @@ void LinkedList::delete_at(int at) {
 }
 
 void LinkedList::deinit() {
-  delete HEAD;
+  delete head;
 }
