@@ -15,7 +15,10 @@ void LinkedList::insert_tail(int x) {
   Node* new_node = new Node();
   new_node->data = x;
 
-  // BUG: handle null head
+  if (head == NULL) {
+    head = new_node;
+    return;
+  }
 
   Node* tail;
   for (Node* i = head; i != NULL; i = i->next) {
