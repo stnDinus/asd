@@ -42,11 +42,11 @@ public:
   void insert_head(int x);
   void insert_tail(int x);
   void print();
-  void pop_head();
-  void pop_tail();
+  void delete_head();
+  void delete_tail();
   int len();
   void insert_at(int at, int x);
-  void pop(int data);
-  void pop_at(int at);
+  void delete_data(int data);
+  void delete_at(int at);
   void deinit();
 };

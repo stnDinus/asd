@@ -40,7 +40,7 @@ void LinkedList::print() {
   cout << endl;
 }
 
-void LinkedList::pop_head() {
+void LinkedList::delete_head() {
   if (HEAD != NULL) {
     Node* temp = HEAD->next;
     delete HEAD;
@@ -48,7 +48,7 @@ void LinkedList::pop_head() {
   };
 }
 
-void LinkedList::pop_tail() {
+void LinkedList::delete_tail() {
   if (HEAD == NULL) {
     return;
   }
@@ -94,9 +94,9 @@ void LinkedList::insert_at(int at, int x) {
   }
 }
 
-void LinkedList::pop(int data) {
+void LinkedList::delete_data(int data) {
   if (HEAD->data == data) {
-    pop_head();
+    delete_head();
   }
 
   Node* pre;
@@ -115,7 +115,7 @@ void LinkedList::pop(int data) {
   }
 }
 
-void LinkedList::pop_at(int at) {
+void LinkedList::delete_at(int at) {
   int l = len();
   if (at > l - 1)  {
     cerr << "invalid position " << at << " on linked list with length " << l << endl;
@@ -123,7 +123,7 @@ void LinkedList::pop_at(int at) {
   }
 
   if (at == 0) {
-    pop_head();
+    delete_head();
     return;
   }
 
