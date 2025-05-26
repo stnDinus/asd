@@ -57,15 +57,23 @@ void LinkedList::delete_tail() {
   if (head == NULL) {
     return;
   }
-  Node* pre_tail;
-  for (Node* i = head; i != NULL ; i = i->next) {
-    if (i->next == NULL) {
-      delete i;
-      break;
-    }
-    pre_tail = i;
+
+  // in case of only one element
+  if (head->next == NULL) {
+    delete head;
+    head = NULL;
+    return;
   }
-  pre_tail->next = NULL;
+
+  Node* prev_node = NULL;
+  Node* tail = head;
+  while (tail->next != NULL) {
+    prev_node = tail;
+    tail = tail->next;
+  }
+
+  delete prev_node->next;
+  prev_node->next = NULL;
 }
 
 int LinkedList::len() {
