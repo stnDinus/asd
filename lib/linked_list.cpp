@@ -82,28 +82,30 @@ int LinkedList::len() {
   return i;
 }
 
-void LinkedList::insert_at(int at, int x) {
-  int l = len();
-  if (at > l - 1)  {
-    cerr << "invalid position " << at << " on linked list with length " << l << endl;
+void LinkedList::insert_after(int pos, int x) {
+  if (head == NULL) {
+    cerr << "calling insert_after on empty list" << endl;
     return;
   }
 
-  if (at == 0) {
-    insert_head(x);
+  int l = len();
+  if (pos > l - 1)  {
+    cerr << "cannot insert node after position " << pos << " on linked list with length " << l << endl;
+    return;
   }
 
-  int i = 1;
-  Node* prev_node = head;
-  for (Node* n = head->next; n != NULL; prev_node = n, n = n->next, i++) {
-    if (i == at) {
-      Node* new_node = new Node();
-      new_node->data = x;
-      new_node->next = n;
-      prev_node->next = new_node;
-      break;
-    }
+  int i = 0;
+  Node* pos_node = head;
+  while (pos_node != NULL && i != pos) {
+    pos_node = pos_node->next;
+    i++;
   }
+
+  Node* new_node = new Node();
+  new_node->data = x;
+  new_node->next = pos_node->next;
+
+  pos_node->next = new_node;
 }
 
 void LinkedList::delete_data(int data) {

@@ -44,7 +44,7 @@ public:
   void insert_tail(int x);
   void delete_head();
   void delete_tail();
-  void insert_at(int at, int x);
+  void insert_after(int at, int x);
   void delete_at(int at);
   void delete_data(int data);
 
