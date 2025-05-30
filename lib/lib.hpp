@@ -40,15 +40,20 @@ class LinkedList {
 public:
   Node* head = NULL;
 
+  // insert methods
   void insert_head(int x);
   void insert_tail(int x);
+  void insert_after(int pos, int x);
+  void insert_before(int pos, int x);
+
+  // delete methods
   void delete_head();
   void delete_tail();
-  void insert_after(int at, int x);
-  void delete_at(int at);
+  void delete_after(int pos);
+  void delete_before(int pos);
   void delete_data(int data);
 
-  // utility functions
+  // utility methods
   int len();
   void print();
   void deinit();

@@ -84,7 +84,7 @@ int LinkedList::len() {
 
 void LinkedList::insert_after(int pos, int x) {
   if (head == NULL) {
-    cerr << "calling insert_after on empty list" << endl;
+    cerr << "cannot call insert_after on empty list" << endl;
     return;
   }
 
@@ -129,28 +129,95 @@ void LinkedList::delete_data(int data) {
   }
 }
 
-void LinkedList::delete_at(int at) {
-  int l = len();
-  if (at > l - 1)  {
-    cerr << "invalid position " << at << " on linked list with length " << l << endl;
+void LinkedList::delete_after(int pos) {
+  if (head == NULL) {
+    cerr << "cannot call delete_after on empty list" << endl;
     return;
   }
 
-  if (at == 0) {
-    delete_head();
+  int l = len();
+  if (pos > l - 2)  {
+    cerr << "cannot delete node after position " << pos << " on linked list with length " << l << endl;
+    return;
+  }
+
+  int i = 0;
+  Node* pos_node = head;
+  while (pos_node != NULL && i != pos) {
+    pos_node = pos_node->next;
+    i++;
+  }
+
+  Node* to_delete = pos_node->next;
+  pos_node->next = to_delete->next;
+  delete to_delete;
+}
+
+void LinkedList::insert_before(int pos, int x) {
+  if (head == NULL) {
+    cerr << "cannot call insert_before on empty list" << endl;
+    return;
+  }
+
+  int l = len();
+  if (pos > l - 1)  {
+    cerr << "cannot insert node before position " << pos << " on linked list with length " << l << endl;
+    return;
+  }
+
+  if (pos == 0) {
+    insert_head(x);
     return;
   }
 
   int i = 1;
-  Node* pre_at = head;
-  for (Node* n = head->next; n != NULL; n = n->next, i++) {
-    if (i == at) {
-      pre_at->next = n->next;
-      delete n;
-      break;
-    }
-    pre_at = n;
+  Node* prev_node = head;
+  Node* pos_node = head->next;
+  while (pos_node != NULL && i != pos) {
+    prev_node = pos_node;
+    pos_node = pos_node->next;
+    i++;
   }
+
+  Node* new_node = new Node();
+  new_node->data = x;
+  new_node->next = pos_node;
+
+  prev_node->next = new_node;
+}
+
+void LinkedList::delete_before(int pos) {
+  if (head == NULL) {
+    cerr << "cannot call delete_before on empty list" << endl;
+    return;
+  }
+
+  int l = len();
+  if (pos > l - 1)  {
+    cerr << "cannot delete node before position " << pos << " on linked list with length " << l << endl;
+    return;
+  }
+
+  if (pos == 0) {
+    cerr << "cannot delete node before head" << endl;
+    return;
+  }
+
+  if (pos == 1) {
+    delete_head();
+    return;
+  }
+
+  int i = 0;
+  Node* prev_node = head;
+  while (prev_node != NULL && i != pos - 2) {
+    prev_node = prev_node->next;
+    i++;
+  }
+
+  Node* to_delete = prev_node->next;
+  prev_node->next = to_delete->next;
+  delete to_delete;
 }
 
 void LinkedList::deinit() {
