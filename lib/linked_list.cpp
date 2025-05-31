@@ -28,60 +28,6 @@ void LinkedList::insert_tail(int x) {
   tail->next = new_node;
 }
 
-void LinkedList::print() {
-  if (head == NULL) {
-    cout << "-" << endl;
-    return;
-  }
-
-  for (Node* i = head; i != NULL; i = i->next) {
-    cout << i->data;
-
-    if (i->next != NULL) {
-      cout << "->";
-    }
-  }
-
-  cout << endl;
-}
-
-void LinkedList::delete_head() {
-  if (head != NULL) {
-    Node* new_head = head->next;
-    delete head;
-    head = new_head;
-  };
-}
-
-void LinkedList::delete_tail() {
-  if (head == NULL) {
-    return;
-  }
-
-  // in case of only one element
-  if (head->next == NULL) {
-    delete head;
-    head = NULL;
-    return;
-  }
-
-  Node* prev_node = NULL;
-  Node* tail = head;
-  while (tail->next != NULL) {
-    prev_node = tail;
-    tail = tail->next;
-  }
-
-  delete prev_node->next;
-  prev_node->next = NULL;
-}
-
-int LinkedList::len() {
-  int i = 0;
-  for (Node* n = head; n != NULL; n = n->next, i++) {};
-  return i;
-}
-
 void LinkedList::insert_after(int pos, int x) {
   if (head == NULL) {
     cerr << "cannot call insert_after on empty list" << endl;
@@ -106,51 +52,6 @@ void LinkedList::insert_after(int pos, int x) {
   new_node->next = pos_node->next;
 
   pos_node->next = new_node;
-}
-
-void LinkedList::delete_data(int data) {
-  if (head->data == data) {
-    delete_head();
-  }
-
-  Node* pre;
-  for (Node* n = head->next; n != NULL; pre = n, n = n->next) {
-    if (n->data != data) {
-      continue;
-    }
-
-    if (n->next == NULL) {
-      delete n;
-      pre->next = NULL;
-      break;
-    }
-
-    pre->next = n->next;
-  }
-}
-
-void LinkedList::delete_after(int pos) {
-  if (head == NULL) {
-    cerr << "cannot call delete_after on empty list" << endl;
-    return;
-  }
-
-  int l = len();
-  if (pos > l - 2)  {
-    cerr << "cannot delete node after position " << pos << " on linked list with length " << l << endl;
-    return;
-  }
-
-  int i = 0;
-  Node* pos_node = head;
-  while (pos_node != NULL && i != pos) {
-    pos_node = pos_node->next;
-    i++;
-  }
-
-  Node* to_delete = pos_node->next;
-  pos_node->next = to_delete->next;
-  delete to_delete;
 }
 
 void LinkedList::insert_before(int pos, int x) {
@@ -186,6 +87,61 @@ void LinkedList::insert_before(int pos, int x) {
   prev_node->next = new_node;
 }
 
+void LinkedList::delete_head() {
+  if (head != NULL) {
+    Node* new_head = head->next;
+    delete head;
+    head = new_head;
+  };
+}
+
+void LinkedList::delete_tail() {
+  if (head == NULL) {
+    return;
+  }
+
+  // in case of only one element
+  if (head->next == NULL) {
+    delete head;
+    head = NULL;
+    return;
+  }
+
+  Node* prev_node = NULL;
+  Node* tail = head;
+  while (tail->next != NULL) {
+    prev_node = tail;
+    tail = tail->next;
+  }
+
+  delete prev_node->next;
+  prev_node->next = NULL;
+}
+
+void LinkedList::delete_after(int pos) {
+  if (head == NULL) {
+    cerr << "cannot call delete_after on empty list" << endl;
+    return;
+  }
+
+  int l = len();
+  if (pos > l - 2)  {
+    cerr << "cannot delete node after position " << pos << " on linked list with length " << l << endl;
+    return;
+  }
+
+  int i = 0;
+  Node* pos_node = head;
+  while (pos_node != NULL && i != pos) {
+    pos_node = pos_node->next;
+    i++;
+  }
+
+  Node* to_delete = pos_node->next;
+  pos_node->next = to_delete->next;
+  delete to_delete;
+}
+
 void LinkedList::delete_before(int pos) {
   if (head == NULL) {
     cerr << "cannot call delete_before on empty list" << endl;
@@ -218,6 +174,50 @@ void LinkedList::delete_before(int pos) {
   Node* to_delete = prev_node->next;
   prev_node->next = to_delete->next;
   delete to_delete;
+}
+
+void LinkedList::delete_data(int data) {
+  if (head->data == data) {
+    delete_head();
+  }
+
+  Node* pre;
+  for (Node* n = head->next; n != NULL; pre = n, n = n->next) {
+    if (n->data != data) {
+      continue;
+    }
+
+    if (n->next == NULL) {
+      delete n;
+      pre->next = NULL;
+      break;
+    }
+
+    pre->next = n->next;
+  }
+}
+
+int LinkedList::len() {
+  int i = 0;
+  for (Node* n = head; n != NULL; n = n->next, i++) {};
+  return i;
+}
+
+void LinkedList::print() {
+  if (head == NULL) {
+    cout << "-" << endl;
+    return;
+  }
+
+  for (Node* i = head; i != NULL; i = i->next) {
+    cout << i->data;
+
+    if (i->next != NULL) {
+      cout << "->";
+    }
+  }
+
+  cout << endl;
 }
 
 void LinkedList::deinit() {
