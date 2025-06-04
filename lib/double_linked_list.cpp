@@ -35,6 +35,23 @@ void DoubleLinkedList::insert_before(int pos, int x) {
 }
 
 void DoubleLinkedList::delete_head() {
+  if (is_empty()) {
+    return;
+  }
+
+  BiNode* old_head = head;
+
+  if (len() == 1) {
+    head = NULL;
+    tail = NULL;
+    delete old_head;
+    return;
+  }
+
+  BiNode* new_head = old_head->next;
+  new_head->prev = NULL;
+  head = new_head;
+  delete old_head;
 }
 
 void DoubleLinkedList::delete_tail() {

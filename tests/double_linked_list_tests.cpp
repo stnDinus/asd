@@ -84,6 +84,35 @@ void test_insert_before() {
 }
 
 void test_delete_head() {
+  INIT_TEST();
+
+  dll.insert_tail(1);
+  dll.insert_tail(2);
+  dll.insert_tail(3);
+
+  dll.delete_head();
+  assert(dll.head->data == 2);
+  assert(dll.tail->data == 3);
+  INIT_NODES(dll.head);
+  assert(current_node->data == 2);
+  assert(next_node->data == 3);
+  assert(prev_node == NULL);
+
+  dll.delete_head();
+  assert(dll.head->data == 3);
+  assert(dll.tail->data == 3);
+  INIT_NODES(dll.head);
+  assert(current_node->data == 3);
+  assert(next_node == NULL);
+  assert(prev_node == NULL);
+
+  // in case of one element
+  dll.delete_head();
+  assert(dll.is_empty());
+
+  // in case of empty list
+  dll.delete_head();
+  assert(dll.is_empty());
 }
 
 void test_delete_tail() {
