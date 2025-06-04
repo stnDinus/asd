@@ -58,3 +58,35 @@ public:
   void print();
   void deinit();
 };
+
+class BiNode {
+public:
+  int data;
+  BiNode* next = NULL;
+  BiNode* prev = NULL;
+};
+
+class DoubleLinkedList {
+public:
+  BiNode* head = NULL;
+  BiNode* tail = NULL;
+
+  // insert methods
+  void insert_head(int x);
+  void insert_tail(int x);
+  void insert_after(int pos, int x);
+  void insert_before(int pos, int x);
+
+  // delete methods
+  void delete_head();
+  void delete_tail();
+  void delete_after(int pos);
+  void delete_before(int pos);
+  void delete_data(int data);
+
+  // utility methods
+  int len();
+  void print();
+  void deinit();
+  bool is_empty();
+};
