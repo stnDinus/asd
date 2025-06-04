@@ -43,6 +43,8 @@ void test_insert_head() {
   assert(current_node->data == 1);
   assert(next_node->data == 2);
   assert(prev_node == NULL);
+
+  dll.deinit();
 }
 
 void test_insert_tail() {
@@ -71,6 +73,8 @@ void test_insert_tail() {
   assert(current_node->data == 3);
   assert(next_node == NULL);
   assert(prev_node->data == 2);
+
+  dll.deinit();
 }
 
 void test_insert_after() {
