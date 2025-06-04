@@ -55,6 +55,23 @@ void DoubleLinkedList::delete_head() {
 }
 
 void DoubleLinkedList::delete_tail() {
+  if (is_empty()) {
+    return;
+  }
+
+  BiNode* old_tail = tail;
+
+  if (len() == 1) {
+    head = NULL;
+    tail = NULL;
+    delete old_tail;
+    return;
+  }
+
+  BiNode* new_tail = old_tail->prev;
+  new_tail->next = NULL;
+  tail = new_tail;
+  delete old_tail;
 }
 
 void DoubleLinkedList::delete_after(int pos) {
