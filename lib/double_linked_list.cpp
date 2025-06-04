@@ -12,9 +12,6 @@ void DoubleLinkedList::insert_head(int x) {
   new_head->next = head;
   head->prev = new_head;
   head = new_head;
-  if (tail == NULL) {
-    tail = new_head;
-  }
 }
 
 void DoubleLinkedList::insert_tail(int x) {
