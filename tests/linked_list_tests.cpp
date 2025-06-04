@@ -159,6 +159,28 @@ void test_delete_before() {
   ll.deinit();
 }
 
+void test_delete_data() {
+  LinkedList ll;
+
+  // should fail
+  ll.delete_data(0);
+
+  ll.insert_tail(1);
+  ll.insert_tail(2);
+  ll.insert_tail(3);
+  ll.insert_tail(2);
+  ll.insert_tail(1);
+
+  ll.delete_data(1);
+  Node* current_node = ll.head;
+  assert(current_node->data == 2);
+
+  ll.delete_data(2);
+  assert(ll.head->data == 3);
+
+  ll.deinit();
+}
+
 int main() {
   test_insert_head();
   test_insert_tail();
@@ -168,6 +190,7 @@ int main() {
   test_delete_after();
   test_insert_before();
   test_delete_before();
+  test_delete_data();
 
   return 0;
 }

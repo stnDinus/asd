@@ -177,23 +177,35 @@ void LinkedList::delete_before(int pos) {
 }
 
 void LinkedList::delete_data(int data) {
-  if (head->data == data) {
-    delete_head();
+  if (head == NULL) {
+    cerr << "calling delete_data on empty list" << endl;
+    return;
   }
 
-  Node* pre;
-  for (Node* n = head->next; n != NULL; pre = n, n = n->next) {
-    if (n->data != data) {
+  bool recheck = true;
+  while (recheck && head != NULL) {
+    recheck = false;
+
+    if (head->data == data) {
+      Node* old_head = head;
+      head = head->next;
+      recheck = true;
+      delete old_head;
       continue;
     }
 
-    if (n->next == NULL) {
-      delete n;
-      pre->next = NULL;
-      break;
+    Node* prev_node = head;
+    Node* current_node = head->next;
+    while (current_node != NULL) {
+      if (current_node->data == data) {
+        prev_node->next = current_node->next;
+        delete current_node;
+        recheck = true;
+        break;
+      }
+      prev_node = current_node;
+      current_node = current_node->next;
     }
-
-    pre->next = n->next;
   }
 }
 
