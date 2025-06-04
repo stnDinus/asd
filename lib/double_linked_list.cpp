@@ -53,6 +53,20 @@ int DoubleLinkedList::len() {
 }
 
 void DoubleLinkedList::print() {
+  if (is_empty()) {
+    cout << "-" << endl;
+    return;
+  }
+
+  for (BiNode* i = head; i != NULL; i = i->next) {
+    cout << i->data;
+
+    if (i->next != NULL) {
+      cout << "<->";
+    }
+  }
+
+  cout << endl;
 }
 
 void DoubleLinkedList::deinit() {
