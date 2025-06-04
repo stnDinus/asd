@@ -56,6 +56,7 @@ void DoubleLinkedList::print() {
 }
 
 void DoubleLinkedList::deinit() {
+  delete head;
 }
 
 bool DoubleLinkedList::is_empty() {
