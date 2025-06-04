@@ -15,6 +15,17 @@ void DoubleLinkedList::insert_head(int x) {
 }
 
 void DoubleLinkedList::insert_tail(int x) {
+  BiNode* new_tail = new BiNode();
+  new_tail->data = x;
+
+  if (is_empty()) {
+    head = tail = new_tail;
+    return;
+  }
+
+  new_tail->prev = tail;
+  tail->next = new_tail;
+  tail = new_tail;
 }
 
 void DoubleLinkedList::insert_after(int pos, int x) {

@@ -46,6 +46,31 @@ void test_insert_head() {
 }
 
 void test_insert_tail() {
+  INIT_TEST();
+
+  dll.insert_tail(1);
+  assert(dll.head->data == 1);
+  assert(dll.tail->data == 1);
+  INIT_NODES(dll.tail);
+  assert(current_node->data == 1);
+  assert(next_node == NULL);
+  assert(prev_node == NULL);
+
+  dll.insert_tail(2);
+  assert(dll.head->data == 1);
+  assert(dll.tail->data == 2);
+  INIT_NODES(dll.tail);
+  assert(current_node->data == 2);
+  assert(next_node == NULL);
+  assert(prev_node->data == 1);
+
+  dll.insert_tail(3);
+  assert(dll.head->data == 1);
+  assert(dll.tail->data == 3);
+  INIT_NODES(dll.tail);
+  assert(current_node->data == 3);
+  assert(next_node == NULL);
+  assert(prev_node->data == 2);
 }
 
 void test_insert_after() {
