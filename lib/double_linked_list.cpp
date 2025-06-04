@@ -50,6 +50,9 @@ void DoubleLinkedList::delete_data(int data) {
 }
 
 int DoubleLinkedList::len() {
+  int i = 0;
+  for (BiNode* n = head; n != NULL; n = n->next, i++) {};
+  return i;
 }
 
 void DoubleLinkedList::print() {
