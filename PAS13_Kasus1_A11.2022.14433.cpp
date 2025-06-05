@@ -17,33 +17,16 @@ public:
   BiNode* tail = NULL;
 
   // insert methods
-  void insert_head(int x);
   void insert_tail(int x);
 
   // delete methods
   void delete_head();
-  void delete_tail();
 
   // utility methods
   int len();
-  void print();
   void deinit();
   bool is_empty();
 };
-
-void DoubleLinkedList::insert_head(int x) {
-  BiNode* new_head = new BiNode();
-  new_head->data = x;
-
-  if (is_empty()) {
-    head = tail = new_head;
-    return;
-  }
-
-  new_head->next = head;
-  head->prev = new_head;
-  head = new_head;
-}
 
 void DoubleLinkedList::insert_tail(int x) {
   BiNode* new_tail = new BiNode();
@@ -79,47 +62,10 @@ void DoubleLinkedList::delete_head() {
   delete old_head;
 }
 
-void DoubleLinkedList::delete_tail() {
-  if (is_empty()) {
-    return;
-  }
-
-  BiNode* old_tail = tail;
-
-  if (len() == 1) {
-    head = NULL;
-    tail = NULL;
-    delete old_tail;
-    return;
-  }
-
-  BiNode* new_tail = old_tail->prev;
-  new_tail->next = NULL;
-  tail = new_tail;
-  delete old_tail;
-}
-
 int DoubleLinkedList::len() {
   int i = 0;
   for (BiNode* n = head; n != NULL; n = n->next, i++) {};
   return i;
-}
-
-void DoubleLinkedList::print() {
-  if (is_empty()) {
-    cout << "-" << endl;
-    return;
-  }
-
-  for (BiNode* i = head; i != NULL; i = i->next) {
-    cout << i->data;
-
-    if (i->next != NULL) {
-      cout << "<->";
-    }
-  }
-
-  cout << endl;
 }
 
 void DoubleLinkedList::deinit() {
