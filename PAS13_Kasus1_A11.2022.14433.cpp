@@ -234,7 +234,7 @@ int main() {
     cout << "empty?\t" << (ql.is_empty() ? 'y' : 'n') << endl;
     cout << "enqueue\t" << a[i] << endl;
     ql.enqueue(a[i]);
-    cout << "state: ";
+    cout << "state:\t";
     ql.print();
     cout << endl;
   }
@@ -254,7 +254,7 @@ int main() {
     }
 
     cout << "dequeued:\t" << get<1>(dq_res) << endl;
-    cout << "state: ";
+    cout << "state:\t\t";
     ql.print();
     cout << endl;
   }
