@@ -60,6 +60,10 @@ struct Queue {
     QueueNode* old_head = head;
     head = head->next;
 
+    if (head == NULL) {
+      tail = NULL;
+    }
+
     return old_head;
   }
 
