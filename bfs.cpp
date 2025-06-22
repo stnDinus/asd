@@ -8,82 +8,33 @@ struct TreeNode {
   TreeNode* left = NULL;
   TreeNode* right = NULL;
 
-  TreeNode(int x) {
-    data = x;
-  }
+  TreeNode(int);
 };
 
 struct Tree {
   TreeNode* root = NULL;
 
-  void insert(int x) {
-    root = insert_from(root, x);
-  }
-
-  TreeNode* insert_from(TreeNode* t_node, int x) {
-    if (t_node == NULL) {
-      return new TreeNode(x);
-    }
-
-    if (x > t_node->data) {
-      t_node->right = insert_from(t_node->right, x);
-    } else {
-      t_node->left = insert_from(t_node->left, x);
-    }
-
-    return t_node;
-  }
+  void insert(int);
+  TreeNode* insert_from(TreeNode*, int);
 };
 
 struct QueueNode {
   TreeNode* data;
   QueueNode* next = NULL;
 
-  QueueNode(TreeNode* tree_node) {
-    data = tree_node;
-  }
+  QueueNode(TreeNode*);
 };
 
 struct Queue {
   QueueNode* head = NULL;
   QueueNode* tail = NULL;
 
-  bool is_empty() {
-    return head == NULL;
-  }
-
-  QueueNode* pop() {
-    if (head == NULL) {
-      return NULL;
-    }
-
-    QueueNode* old_head = head;
-    head = head->next;
-
-    if (head == NULL) {
-      tail = NULL;
-    }
-
-    return old_head;
-  }
-
-  void push(TreeNode* t_node) {
-    if (t_node == NULL) {
-      return;
-    }
-
-    QueueNode* new_q_node = new QueueNode(t_node);
-
-    if (head == NULL) {
-      head = tail = new_q_node;
-      return;
-    }
-
-    tail->next = new_q_node;
-    tail = new_q_node;
-  }
+  bool is_empty();
+  QueueNode* pop();
+  void push(TreeNode*);
 };
 
+// Breadth first search / Tree level order
 void tree_lvl_order(Tree* t) {
   Queue q;
 
@@ -123,4 +74,65 @@ int main() {
   }
 
   return 0;
+}
+
+TreeNode::TreeNode(int x ) {
+  data = x;
+}
+
+void Tree::insert(int x) {
+  root = insert_from(root, x);
+}
+
+TreeNode* Tree::insert_from(TreeNode* t_node, int x) {
+    if (t_node == NULL) {
+      return new TreeNode(x);
+    }
+
+    if (x > t_node->data) {
+      t_node->right = insert_from(t_node->right, x);
+    } else {
+      t_node->left = insert_from(t_node->left, x);
+    }
+
+    return t_node;
+}
+
+QueueNode::QueueNode(TreeNode* tree_node) {
+  data = tree_node;
+}
+
+bool Queue::is_empty() {
+  return head == NULL;
+}
+
+QueueNode* Queue::pop() {
+  if (head == NULL) {
+    return NULL;
+  }
+
+  QueueNode* old_head = head;
+  head = head->next;
+
+  if (head == NULL) {
+    tail = NULL;
+  }
+
+  return old_head;
+}
+
+void Queue::push(TreeNode* t_node) {
+  if (t_node == NULL) {
+    return;
+  }
+
+  QueueNode* new_q_node = new QueueNode(t_node);
+
+  if (head == NULL) {
+    head = tail = new_q_node;
+    return;
+  }
+
+  tail->next = new_q_node;
+  tail = new_q_node;
 }
