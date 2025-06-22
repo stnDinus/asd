@@ -107,13 +107,14 @@ bool Queue::is_empty() {
 }
 
 QueueNode* Queue::pop() {
-  if (head == NULL) {
+  if (is_empty()) {
     return NULL;
   }
 
   QueueNode* old_head = head;
   head = head->next;
 
+  // sync tail
   if (head == NULL) {
     tail = NULL;
   }
@@ -128,7 +129,7 @@ void Queue::push(TreeNode* t_node) {
 
   QueueNode* new_q_node = new QueueNode(t_node);
 
-  if (head == NULL) {
+  if (is_empty()) {
     head = tail = new_q_node;
     return;
   }
