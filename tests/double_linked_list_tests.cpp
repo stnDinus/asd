@@ -78,6 +78,41 @@ void test_insert_tail() {
 }
 
 void test_insert_after() {
+  INIT_TEST();
+
+  // negative pos, should fail
+  dll.insert_after(-1, 1);
+
+  // insert on empty list, should fail
+  dll.insert_after(0, 1);
+
+  dll.insert_tail(1);
+
+  // insert tail
+  dll.insert_after(0, 3);
+  assert(dll.tail->data == 3);
+  INIT_NODES(dll.tail);
+  assert(current_node->data == 3);
+  assert(next_node == NULL);
+  assert(prev_node->data == 1);
+
+  // insert intermediate
+  dll.insert_after(0, 2);
+  INIT_NODES(dll.head->next);
+  assert(current_node->data == 2);
+  assert(next_node->data == 3);
+  assert(prev_node->data == 1);
+
+  dll.insert_after(2, 5);
+  INIT_NODES(dll.tail);
+  assert(current_node->data == 5);
+  assert(next_node == NULL);
+  assert(prev_node->data == 3);
+
+  // insert at pos > len, should fail
+  dll.insert_after(2, 5);
+
+  dll.deinit();
 }
 
 void test_insert_before() {

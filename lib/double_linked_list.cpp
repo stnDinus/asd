@@ -29,6 +29,35 @@ void DoubleLinkedList::insert_tail(int x) {
 }
 
 void DoubleLinkedList::insert_after(int pos, int x) {
+  if (pos < 0) {
+    return;
+  }
+
+  if (is_empty()) {
+    return;
+  }
+
+  int i = 0;
+  BiNode* current_node = head;
+  while (i != pos && current_node->next != NULL) {
+    current_node = current_node->next;
+    i++;
+  }
+
+  if (i != pos) {
+    return;
+  }
+
+  BiNode* new_node = new BiNode();
+  new_node->data = x;
+  new_node->next = current_node->next;
+  new_node->prev = current_node;
+
+  current_node->next = new_node;
+
+  if (new_node->next == NULL) {
+    tail = new_node;
+  }
 }
 
 void DoubleLinkedList::insert_before(int pos, int x) {
