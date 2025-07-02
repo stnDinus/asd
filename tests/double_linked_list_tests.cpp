@@ -1,5 +1,6 @@
 #include "../lib/lib.hpp"
 #include <cassert>
+#include "./helper.cpp"
 
 #define INIT_TEST() \
   DoubleLinkedList dll; \
@@ -191,6 +192,28 @@ void test_delete_before() {
 void test_delete_data() {
 }
 
+void test_insertion_sort() {
+  int n = 1000;
+  for (int i = 0; i < n; i++) {
+    INIT_TEST();
+
+    int n = 8;
+    for (int i = 0; i < n; i++) {
+      dll.insert_tail(gen_rand());
+    }
+
+    dll.insertion_sort();
+
+    INIT_NODES(dll.head->next);
+    for (int i = 1; i < n; i++) {
+      assert(current_node->data >= current_node->prev->data);
+      current_node = current_node->next;
+    }
+
+    delete dll.head;
+  }
+}
+
 int main() {
   test_insert_head();
   test_insert_tail();
@@ -201,6 +224,7 @@ int main() {
   test_delete_after();
   test_delete_before();
   test_delete_data();
+  test_insertion_sort();
 
   return 0;
 }

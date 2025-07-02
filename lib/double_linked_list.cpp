@@ -142,3 +142,25 @@ void DoubleLinkedList::deinit() {
 bool DoubleLinkedList::is_empty() {
   return head == NULL && tail == NULL;
 }
+
+void DoubleLinkedList::insertion_sort() {
+  BiNode* current_node = head->next;
+
+  while (current_node != NULL) {
+    int key = current_node->data;
+
+    BiNode* pivot_node = current_node->prev;
+    while (pivot_node != NULL && pivot_node->data > key) {
+      pivot_node->next->data = pivot_node->data;
+      pivot_node = pivot_node->prev;
+    }
+
+    if (pivot_node == NULL) {
+      head->data = key;
+    } else {
+      pivot_node->next->data = key;
+    }
+
+    current_node = current_node->next;
+  }
+}

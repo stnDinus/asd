@@ -89,4 +89,6 @@ public:
   void print();
   void deinit();
   bool is_empty();
+
+  void insertion_sort();
 };
